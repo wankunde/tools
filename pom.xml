@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.wankun</groupId>
-  <artifactId>tools</artifactId>
-  <version>1.0.0</version>
-  <packaging>jar</packaging>
+	<groupId>com.wankun</groupId>
+	<artifactId>tools</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
 
-  <name>tools</name>
-  <url>http://maven.apache.org</url>
+	<name>tools</name>
+	<url>http://maven.apache.org</url>
 
-<repositories>
+	<repositories>
 		<repository>
 			<id>cloudera</id>
 			<url>https://repository.cloudera.com/cloudera/cloudera-repos</url>
@@ -21,9 +21,9 @@
 		<maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hadoop.version>2.3.0-cdh5.0.1</hadoop.version>
-		<mrunit.version>1.1.0</mrunit.version>
-		<hadoop.classifier>hadoop2</hadoop.classifier>
-		<ansj_seg.version>1.4.1</ansj_seg.version>
+
+		<libthrift.version>0.9.1</libthrift.version>
+
 		<junit.version>4.11</junit.version>
 	</properties>
 
@@ -48,6 +48,7 @@
 
 
 	<dependencies>
+		<!-- hadoop rpc module -->
 		<dependency>
 			<groupId>jdk.tools</groupId>
 			<artifactId>jdk.tools</artifactId>
@@ -60,12 +61,20 @@
 			<artifactId>hadoop-common</artifactId>
 			<version>${hadoop.version}</version>
 		</dependency>
+
+		<!-- thrift module -->
+		<dependency>
+			<groupId>org.apache.thrift</groupId>
+			<artifactId>libthrift</artifactId>
+			<version>${libthrift.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
 </project>
