@@ -7,7 +7,7 @@ import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TSSLTransportFactory.TSSLTransportParameters;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
-
+ 
 public class JavaClient {
 	public static void main(String[] args) {
 
