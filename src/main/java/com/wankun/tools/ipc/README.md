@@ -14,10 +14,34 @@
 
 ## Hadoop RPC流程分析
 
-1 代理Proxy对象获取
-入口：
-ClientProtocol proxy = RPC.getProxy(ClientProtocol.class,ClientProtocol.versionID, addr, conf);
+- 列表层级和缩进有关
+	- 列表层级和缩进有关
+	- 列表层级和缩进有关
+- 列表层级和缩进有关
 
+
+1. 数字和点开端有序列表。
+
+	2. 数字和点开端有序列表。
+	
+3. 数字和点开端有序列表。
+
+1. 重视子列表的缩进地位。
+
+1. 三级列表。
+1. 编号会主动更正。
+
+1. 二级列表，编号主动更正为2。
+
+2. 返回一级列表。
+
+
+1. 代理Proxy对象获取
+	    
+入口：
+`
+ClientProtocol proxy = RPC.getProxy(ClientProtocol.class,ClientProtocol.versionID, addr, conf);`
+	    
 1.1 获取ProtocolEngine
 	static synchronized RpcEngine getProtocolEngine(Class<?> protocol,Configuration conf) 
 	在PROTOCOL_ENGINES map中没有找到对应的RpcEngine，取默认class org.apache.hadoop.ipc.WritableRpcEngine，接着调用Engine的getProxy方法获取代理。
