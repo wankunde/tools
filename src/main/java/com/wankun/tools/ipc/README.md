@@ -14,9 +14,10 @@
 
 ## Hadoop RPC流程分析
 
-一、代理Proxy对象获取
+1 代理Proxy对象获取
 入口：
 ClientProtocol proxy = RPC.getProxy(ClientProtocol.class,ClientProtocol.versionID, addr, conf);
+
 1.1 获取ProtocolEngine
 	static synchronized RpcEngine getProtocolEngine(Class<?> protocol,Configuration conf) 
 	在PROTOCOL_ENGINES map中没有找到对应的RpcEngine，取默认class org.apache.hadoop.ipc.WritableRpcEngine，接着调用Engine的getProxy方法获取代理。
