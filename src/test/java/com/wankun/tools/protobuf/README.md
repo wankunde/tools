@@ -53,39 +53,39 @@
 	
 ## 使用protobuf 完成rpc调用
 
-0. 实现原理
+1. 实现原理
 
-Server端
-
-* 启动一个socket负责接收数据和发送数据，数据格式为header + body格式，header中记录消息的长度。
-* 请求消息体中包含方法名称和方法的参数，请求消息体通过getDescriptorForType 方法可以获得声明类型，通过findMethodByName方法找到rpc要执行的方法。
-* 通过rpc服务的实现类调用rpc对应的方法获取结果。
-* 执行结果转换为数组发送会client端
+	Server端
 	
-Client端
-
-* 连接服务端
-* 组装消息体byte array
-* 发送消息长度和消息体
-* 接收消息长度和消息体
-* 消息消息结果
+	* 启动一个socket负责接收数据和发送数据，数据格式为header + body格式，header中记录消息的长度。
+	* 请求消息体中包含方法名称和方法的参数，请求消息体通过getDescriptorForType 方法可以获得声明类型，通过findMethodByName方法找到rpc要执行的方法。
+	* 通过rpc服务的实现类调用rpc对应的方法获取结果。
+	* 执行结果转换为数组发送会client端
+		
+	Client端
 	
-核心 BlockingService
-
-* getDescriptorForType 根据第一个参数，从所有Descriptor中找到对应的方法
-* callBlockingMethod 负责调用指定方法
-* getRequestPrototype
-* getResponsePrototype
+	* 连接服务端
+	* 组装消息体byte array
+	* 发送消息长度和消息体
+	* 接收消息长度和消息体
+	* 消息消息结果
 		
-BlockingInterface 定义服务方法，子类负责具体实现，由CalculatorService.newReflectiveBlockingService方法，直接生成上述控制类
+	核心 BlockingService
+	
+	* getDescriptorForType 根据第一个参数，从所有Descriptor中找到对应的方法
+	* callBlockingMethod 负责调用指定方法
+	* getRequestPrototype
+	* getResponsePrototype
+			
+	BlockingInterface 定义服务方法，子类负责具体实现，由CalculatorService.newReflectiveBlockingService方法，直接生成上述控制类
 		
 
-1. 定义消息格式和服务
+2. 定义消息格式和服务
 
 	CalculatorMsg.proto 消息格式
 	Calculator.proto 消息服务
 
-2. 生成java文件
+3. 生成java文件
 	
 	cd ./src/main/proto/
 	
