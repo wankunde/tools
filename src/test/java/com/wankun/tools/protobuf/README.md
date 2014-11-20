@@ -47,4 +47,17 @@
 	测试程序
 		[TestPeople.java](TestPeople.java)，程序测试类对象的创建,write和read等操作
 		
-		
+## 使用protobuf 完成rpc调用
+
+1. 定义消息格式和服务
+
+	CalculatorMsg.proto 消息格式
+	Calculator.proto 消息服务
+
+2. 生成java文件
+	
+	cd ./src/main/proto/
+	
+	protoc ./src/main/proto/CalculatorMsg.proto --java_out=./src/main/java/
+	protoc ./CalculatorMsg.proto --java_out=../java/
+	protoc ./Calculator.proto --java_out=../java/
