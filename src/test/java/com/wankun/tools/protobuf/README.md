@@ -78,7 +78,8 @@
 	* getResponsePrototype
 			
 	BlockingInterface 定义服务方法，子类负责具体实现，由CalculatorService.newReflectiveBlockingService方法，直接生成上述控制类
-		
+
+	UML : [Calculator](/docs/Calculator.jpg)
 
 2. 定义消息格式和服务
 
