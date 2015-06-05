@@ -18,6 +18,9 @@
 	* smoke test : protoc --version
 
 	> 可能用到：googletest.googlecode.com   84.15.64.35
+	> 也可以考虑 下载gtest-1.5.0.tar.bz2文件解压，并修改掉autogen.sh脚本
+	> curl http://googletest.googlecode.com/files/gtest-1.5.0.tar.bz2
+	> tar -jx < gtest-1.5.0.tar.bz2
 
 ## protobuf 使用
 
