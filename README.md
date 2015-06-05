@@ -9,6 +9,6 @@ hadoop2 中的RPC框架
 	
 编写Thrift通信测试
 
-## [protobuf](src/test/java/com/wankun/tools/protobuf/README.md)
+## [protobuf](src/test/java/com/wankun/tools/protobuf/)
 	
 protobuf 的环境安装，编码，测试
