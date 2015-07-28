@@ -20,11 +20,13 @@
    
 1.0 入口
 
+```java
     ClientProtocol proxy = RPC.getProxy(ClientProtocol.class,ClientProtocol.versionID, addr, conf);
+```
 	
 1.1 获取ProtocolEngine
 
-    在PROTOCOL_ENGINES map中没有找到对应的RpcEngine，取默认class org.apache.hadoop.ipc.WritableRpcEngine，接着调用Engine的getProxy方法获取代理。
+在PROTOCOL_ENGINES map中没有找到对应的RpcEngine，取默认class org.apache.hadoop.ipc.WritableRpcEngine，接着调用Engine的getProxy方法获取代理。
 
 ```
     static synchronized RpcEngine getProtocolEngine(Class<?> protocol,Configuration conf) 
@@ -32,7 +34,7 @@
     
 1.2 代理对象生成
 	
-    在proxy代理是通过protocol的反射生成实例的，在反射的时候调用了Invoker实现类，负责修改具体的实现方法。在Invoker的构造方法，有实例化两个对象，ConnectionId类的实例和client实例。ConnectionId实例会调用Client的getConnectionId方法中生成新的ConnectionId remoteId和 Client client对象，来获取server端的连接；remoteId代表Client中的一个远程连接；（在客户端维护了一个Map clients，缓存client实例）
+在proxy代理是通过protocol的反射生成实例的，在反射的时候调用了Invoker实现类，负责修改具体的实现方法。在Invoker的构造方法，有实例化两个对象，ConnectionId类的实例和client实例。ConnectionId实例会调用Client的getConnectionId方法中生成新的ConnectionId remoteId和 Client client对象，来获取server端的连接；remoteId代表Client中的一个远程连接；（在客户端维护了一个Map clients，缓存client实例）
 
 ```
     T proxy = (T) Proxy.newProxyInstance(protocol.getClassLoader(), 
@@ -42,7 +44,7 @@
 
 1.3 构造proxy对象
 	
-    proxy对象包含一个RpcEngine$Invoker，RpcEngine$Invoker中包含三个对象Client，isClosed,remoteId。
+proxy对象包含一个RpcEngine$Invoker，RpcEngine$Invoker中包含三个对象Client，isClosed,remoteId。
 
 2. RPC方法调用
 
