@@ -26,16 +26,19 @@
 
     在PROTOCOL_ENGINES map中没有找到对应的RpcEngine，取默认class org.apache.hadoop.ipc.WritableRpcEngine，接着调用Engine的getProxy方法获取代理。
 
+```
     static synchronized RpcEngine getProtocolEngine(Class<?> protocol,Configuration conf) 
+```
     
 1.2 代理对象生成
 	
     在proxy代理是通过protocol的反射生成实例的，在反射的时候调用了Invoker实现类，负责修改具体的实现方法。在Invoker的构造方法，有实例化两个对象，ConnectionId类的实例和client实例。ConnectionId实例会调用Client的getConnectionId方法中生成新的ConnectionId remoteId和 Client client对象，来获取server端的连接；remoteId代表Client中的一个远程连接；（在客户端维护了一个Map clients，缓存client实例）
 
+```
     T proxy = (T) Proxy.newProxyInstance(protocol.getClassLoader(), 
     						     new Class[] { protocol }, 
 							     new Invoker(protocol, addr, ticket, conf,factory, rpcTimeout));
-    
+``` 
 
 1.3 构造proxy对象
 	
@@ -49,7 +52,9 @@
 	
 2.2 客户端发送方法
 	
+```
 	ObjectWritable value = (ObjectWritable)client.call(RPC.RpcKind.RPC_WRITABLE, new Invocation(method, args), remoteId);
+```
 	
     在这里会将方法，参数包装为一个Invocation对象，也是后面的rpcRequest，Invocation类继承了Writable接口，Configurable接口，可以进行序列化传递。
 	
@@ -69,9 +74,11 @@
 
 2.2.3.2 在connection的calls队列中添加call，并notify当前client对象本身，这样在client对象上等待的程序就可以运行了。
 
+```
       	calls.put(call.id, call);
       	notify();
-          
+```
+		
 2.2.3.3 包装socket的输入和输出，实现数据的截取
 
 2.2.4 connection.sendRpcRequest(call); send rpc request
