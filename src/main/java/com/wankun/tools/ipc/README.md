@@ -12,7 +12,8 @@
 
 
 ## 实现原理
-    客户端代理对象主要指定代理接口类，代理接口类负责连接到服务端，在server端指定protocol的实现类，来对外提供服务。
+   
+客户端代理对象主要指定代理接口类，代理接口类负责连接到服务端，在server端指定protocol的实现类，来对外提供服务。
 
 ## Hadoop RPC流程分析
 
@@ -28,7 +29,7 @@
 
 在PROTOCOL_ENGINES map中没有找到对应的RpcEngine，取默认class org.apache.hadoop.ipc.WritableRpcEngine，接着调用Engine的getProxy方法获取代理。
 
-```
+```java
     static synchronized RpcEngine getProtocolEngine(Class<?> protocol,Configuration conf) 
 ```
     
@@ -36,7 +37,7 @@
 	
 在proxy代理是通过protocol的反射生成实例的，在反射的时候调用了Invoker实现类，负责修改具体的实现方法。在Invoker的构造方法，有实例化两个对象，ConnectionId类的实例和client实例。ConnectionId实例会调用Client的getConnectionId方法中生成新的ConnectionId remoteId和 Client client对象，来获取server端的连接；remoteId代表Client中的一个远程连接；（在客户端维护了一个Map clients，缓存client实例）
 
-```
+```java
     T proxy = (T) Proxy.newProxyInstance(protocol.getClassLoader(), 
     						     new Class[] { protocol }, 
 							     new Invoker(protocol, addr, ticket, conf,factory, rpcTimeout));
@@ -50,33 +51,33 @@ proxy对象包含一个RpcEngine$Invoker，RpcEngine$Invoker中包含三个对�
 
 2.1 代理方法执行
 	
-	在调用proxy对象的方法时，会执行WritableRpcEngine中的invoke方法，invoke参数为(proxy对象,Method 需要执行的方法,args执行方法的参数)
+在调用proxy对象的方法时，会执行WritableRpcEngine中的invoke方法，invoke参数为(proxy对象,Method 需要执行的方法,args执行方法的参数)
 	
 2.2 客户端发送方法
 	
-```
+```java
 	ObjectWritable value = (ObjectWritable)client.call(RPC.RpcKind.RPC_WRITABLE, new Invocation(method, args), remoteId);
 ```
 	
-    在这里会将方法，参数包装为一个Invocation对象，也是后面的rpcRequest，Invocation类继承了Writable接口，Configurable接口，可以进行序列化传递。
+在这里会将方法，参数包装为一个Invocation对象，也是后面的rpcRequest，Invocation类继承了Writable接口，Configurable接口，可以进行序列化传递。
 	
 2.2.1 封装请求对象Invocation
 	
-	在Invocation对象的生产过程中会包装RPC版本，协议名等信息。
+在Invocation对象的生产过程中会包装RPC版本，协议名等信息。
 	
-2.2.2 创建call对象
-	
-	createCall方法。
+2.2.2 创建call对象 
+
+> createCall方法。
 	
 2.2.3 获取连接
 	
-	getConnection(remoteId, call, serviceClass);
+> getConnection(remoteId, call, serviceClass);
 	
 2.2.3.1 在connections连接池中，根据remoteId创建真实的物理连接
 
 2.2.3.2 在connection的calls队列中添加call，并notify当前client对象本身，这样在client对象上等待的程序就可以运行了。
 
-```
+```java
       	calls.put(call.id, call);
       	notify();
 ```
