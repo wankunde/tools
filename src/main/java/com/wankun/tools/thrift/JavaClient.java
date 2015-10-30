@@ -1,12 +1,10 @@
 package com.wankun.tools.thrift;
 
 import org.apache.thrift.TException;
-import org.apache.thrift.transport.TSSLTransportFactory;
-import org.apache.thrift.transport.TTransport;
-import org.apache.thrift.transport.TSocket;
-import org.apache.thrift.transport.TSSLTransportFactory.TSSLTransportParameters;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
+import org.apache.thrift.transport.TSocket;
+import org.apache.thrift.transport.TTransport;
  
 public class JavaClient {
 	public static void main(String[] args) {

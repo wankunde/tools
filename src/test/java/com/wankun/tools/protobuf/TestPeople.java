@@ -1,14 +1,13 @@
 package com.wankun.tools.protobuf;
 
+import com.wankun.tools.protobuf.People.Person;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.junit.Test;
-
-import com.wankun.tools.protobuf.People.Person;
 
 public class TestPeople {
 	@Test

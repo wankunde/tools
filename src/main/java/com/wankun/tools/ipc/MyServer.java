@@ -1,11 +1,11 @@
 package com.wankun.tools.ipc;
 
-import java.io.IOException;
-
 import org.apache.hadoop.HadoopIllegalArgumentException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.ipc.RPC;
 import org.apache.hadoop.ipc.Server;
+
+import java.io.IOException;
 
 /**
  * 构造并启动RPC Server

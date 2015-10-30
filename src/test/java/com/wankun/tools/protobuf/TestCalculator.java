@@ -1,14 +1,13 @@
 package com.wankun.tools.protobuf;
 
+import com.wankun.tools.protobuf.CalculatorMsg.RequestProto;
+import com.wankun.tools.protobuf.CalculatorMsg.ResponseProto;
+import org.junit.Test;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-
-import org.junit.Test;
-
-import com.wankun.tools.protobuf.CalculatorMsg.RequestProto;
-import com.wankun.tools.protobuf.CalculatorMsg.ResponseProto;
 
 public class TestCalculator {
 

@@ -54,7 +54,7 @@ proxy对象包含一个RpcEngine$Invoker，RpcEngine$Invoker中包含三个对�
 在调用proxy对象的方法时，会执行WritableRpcEngine中的invoke方法，invoke参数为(proxy对象,Method 需要执行的方法,args执行方法的参数)
 	
 2.2 客户端发送方法
-	
+
 ```java
 	ObjectWritable value = (ObjectWritable)client.call(RPC.RpcKind.RPC_WRITABLE, new Invocation(method, args), remoteId);
 ```

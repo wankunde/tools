@@ -1,8 +1,8 @@
 package com.wankun.tools.ipc;
 
-import java.io.IOException;
-
 import org.apache.hadoop.ipc.ProtocolSignature;
+
+import java.io.IOException;
 
 /**
  * 实现RPC协议

@@ -1,10 +1,10 @@
 package com.wankun.tools.ipc;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
-
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.ipc.RPC;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
 
 /**
  * 构造RPC Client 并发送RPC请求
